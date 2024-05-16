@@ -18,6 +18,7 @@ public class UsersController : Controller
             Id = p.Id,
             Forename = p.Forename,
             Surname = p.Surname,
+            DateOfBirth = p.DateOfBirth.ToShortDateString(),
             Email = p.Email,
             IsActive = p.IsActive
         });

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UserManagement.Models;
 using UserManagement.Services.Domain.Implementations;
@@ -28,6 +29,7 @@ public class UserServiceTests
             {
                 Forename = forename,
                 Surname = surname,
+                DateOfBirth = new DateTime(1999, 3, 1),
                 Email = email,
                 IsActive = isActive
             }
