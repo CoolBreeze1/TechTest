@@ -89,7 +89,7 @@ public class UsersController : Controller
 
         try
         {
-            var user = model.Id.HasValue ? _userService.GetById(model.Id.Value) : new User();
+            User user = model.Id.HasValue ? _userService.GetById(model.Id.Value) : new User();
 
             user.Forename = model.Forename;
             user.Surname = model.Surname;
@@ -98,6 +98,8 @@ public class UsersController : Controller
             user.IsActive = model.IsActive;
 
             _userService.Update(user);
+
+            TempData["SuccessMessage"] = model.Id.HasValue ? "Successfully updated user details" : "Successfully added user";
         }
         catch
         {
@@ -114,7 +116,7 @@ public class UsersController : Controller
         var model = new UserInformationViewModel();
         try
         {
-            var userDetails = _userService.GetById(id);
+            User userDetails = _userService.GetById(id);
 
             model.Id = userDetails.Id;
             model.Forename = userDetails.Forename;
@@ -130,6 +132,24 @@ public class UsersController : Controller
         }
 
         return View(model);
+    }
+
+
+    [HttpGet]
+    public ActionResult Delete(long id)
+    {
+        try
+        {
+            User user = _userService.GetById(id);
+            _userService.Delete(user);
+            TempData["SuccessMessage"] = $"Successfully deleted user ({user.Forename} {user.Surname})";
+        }
+        catch
+        {
+            TempData["ErrorMessage"] = "Sorry, something went wrong. Please try again.";
+        }
+
+        return RedirectToAction("Index", "Users");
     }
 
 }

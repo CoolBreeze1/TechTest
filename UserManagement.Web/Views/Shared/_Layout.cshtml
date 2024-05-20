@@ -38,6 +38,12 @@
                 <p class="m-0">@TempData["ErrorMessage"]</p>
             </div>
         }
+        else if (TempData["SuccessMessage"] != null)
+        {
+            <div class="d-flex justify-content-center align-items-center alert alert-success" role="alert">
+                <p class="m-0">@TempData["SuccessMessage"]</p>
+            </div>
+        }
 
         <main role="main" class="pb-3">
             @RenderBody()

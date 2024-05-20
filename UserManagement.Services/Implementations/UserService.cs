@@ -24,4 +24,5 @@ public class UserService : IUserService
     public IEnumerable<User> GetAll() => _dataAccess.GetAll<User>();
     public User GetById(long id) => _dataAccess.GetById<User>(id);
     public void Update(User user) => _dataAccess.Update(user);
+    public void Delete(User user) => _dataAccess.Delete(user);
 }
