@@ -1,0 +1,40 @@
+﻿@model UserManagement.Web.Models.Users.UserEditViewModel
+@{
+    var pageTitle = Model.Id.HasValue ? "Edit User Details" : "Add New User";
+}
+
+<h2>@pageTitle</h2>
+
+<div class="d-flex justify-content-center mt-5">
+    <form method="post" class="row g-3 w-50">
+        @Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="Id" />
+        <div class="col-12">
+            <label for="forename" class="form-label">Forename</label>
+            <input asp-for="@Model.Forename" type="text" class="form-control">
+        </div>
+        <div class="col-12">
+            <label for="surname" class="form-label">Surname</label>
+            <input asp-for="@Model.Surname" type="text" class="form-control">
+        </div>
+        <div class="col-12">
+            <label for="dateOfBirth" class="form-label">Date of Birth</label>
+            <input asp-for="@Model.DateOfBirth" type="date" class="form-control">
+        </div>
+        <div class="col-12">
+            <label for="email" class="form-label">Email</label>
+            <input asp-for="@Model.Email" type="text" class="form-control">
+        </div>
+        <div class="col-12">
+            <div class="form-check">
+                <label for="isActive" class="form-check-label">User is Active?</label>
+                <input asp-for="@Model.IsActive" type="checkbox" class="form-check-input">
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <button type="submit" class="btn btn-primary" style="color: #fff !important">Submit</button>
+        </div>
+    </form>
+</div>
+

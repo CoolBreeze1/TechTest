@@ -23,7 +23,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Users" asp-action="List">Users</a>
+                            <a class="nav-link text-dark" asp-controller="Users" asp-action="Index">Users</a>
                         </li>
                     </ul>
                 </div>
@@ -31,6 +31,14 @@
         </nav>
     </header>
     <div class="container">
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="d-flex justify-content-center align-items-center alert alert-danger" role="alert">
+                <p class="m-0">@TempData["ErrorMessage"]</p>
+            </div>
+        }
+
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
