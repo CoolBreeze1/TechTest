@@ -48,7 +48,7 @@ public class UsersController : Controller
     [HttpGet]
     public ActionResult Edit(long? id)
     {
-        var model = new UserEditViewModel();
+        var model = new UserInformationViewModel();
         try
         {
             if (id.HasValue)
@@ -80,7 +80,7 @@ public class UsersController : Controller
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Edit(UserEditViewModel model)
+    public ActionResult Edit(UserInformationViewModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -105,6 +105,31 @@ public class UsersController : Controller
         }
 
         return RedirectToAction("Index", "Users");
+    }
+
+
+    [HttpGet]
+    public ActionResult Details(long id)
+    {
+        var model = new UserInformationViewModel();
+        try
+        {
+            var userDetails = _userService.GetById(id);
+
+            model.Id = userDetails.Id;
+            model.Forename = userDetails.Forename;
+            model.Surname = userDetails.Surname;
+            model.DateOfBirth = userDetails.DateOfBirth;
+            model.Email = userDetails.Email;
+            model.IsActive = userDetails.IsActive;
+        }
+        catch
+        {
+            TempData["ErrorMessage"] = "Sorry, something went wrong. Please try again.";
+            return RedirectToAction("Index", "Users");
+        }
+
+        return View(model);
     }
 
 }

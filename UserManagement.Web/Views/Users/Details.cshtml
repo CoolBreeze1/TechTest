@@ -1,0 +1,36 @@
+﻿@model UserManagement.Web.Models.Users.UserInformationViewModel
+
+<h2>User Details</h2>
+
+<div class="row d-flex justify-content-center mt-5">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-6">Forename:</dt>
+                    <dd class="col-sm-6">@Model.Forename</dd>
+
+                    <dt class="col-sm-6">Surname:</dt>
+                    <dd class="col-sm-6">@Model.Surname</dd>
+
+                    <dt class="col-sm-6">Date of Birth:</dt>
+                    <dd class="col-sm-6">@Model.DateOfBirth.ToShortDateString()</dd>
+
+                    <dt class="col-sm-6">Email:</dt>
+                    <dd class="col-sm-6">@Model.Email</dd>
+
+                    <dt class="col-sm-6">Status:</dt>
+                    <dd class="col-sm-6">@if (Model.IsActive)
+                        {
+                            <span class="badge bg-success">Active</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-danger">Inactive</span>
+                        }</dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+

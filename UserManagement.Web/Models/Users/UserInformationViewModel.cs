@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace UserManagement.Web.Models.Users;
 
-public class UserEditViewModel
+public class UserInformationViewModel
 {
     public long? Id { get; set; }
     public string Forename { get; set; } = default!;
